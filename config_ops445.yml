@@ -1,0 +1,45 @@
+---
+- hosts: mrdhakal
+  user: student
+  become: yes  
+  tasks:
+    - name: update Apache
+      yum:
+        name: httpd
+        state: latest
+
+    - name: install EPEL repository
+      yum:
+        name: epel-release
+        state: present
+
+    - name: remove 'tree' package
+      yum:
+        name: tree
+        state: absent
+
+    - name: set hostname
+      hostname:
+        name: "mrdhakal"
+
+    - name: create a new user with sudo access
+      user:
+        name: "mrdhakal"
+        groups: wheel
+        state: present
+        password: "{{ 'P@ssw0rd' | password_hash('sha512') }}"  
+
+    - name: configure SSH access for new user
+      authorized_key:
+        user: "mrdhakal"
+        state: present
+        key: "{{ lookup('file', '/home/mrdhakal/.ssh/id_rsa.pub') }}"
+    - name: setup directory structure for labs
+      file:
+        path: "/home/mrdhakal/ops445/lab{{ item }}"
+        state: directory
+        owner: "mrdhakal"
+        group: "mrdhakal"
+        mode: '0755'
+      loop: "{{ range(1, 10) | list }}"
+

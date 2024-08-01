@@ -1,0 +1,38 @@
+
+PLAY [mrdhakal] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [mrdhakal]
+
+TASK [update Apache] ***********************************************************
+ok: [mrdhakal]
+
+TASK [install EPEL repository] *************************************************
+ok: [mrdhakal]
+
+TASK [remove 'tree' package] ***************************************************
+changed: [mrdhakal]
+
+TASK [set hostname] ************************************************************
+ok: [mrdhakal]
+
+TASK [create a new user with sudo access] **************************************
+changed: [mrdhakal]
+
+TASK [configure SSH access for new user] ***************************************
+ok: [mrdhakal]
+
+TASK [setup directory structure for labs] **************************************
+ok: [mrdhakal] => (item=1)
+ok: [mrdhakal] => (item=2)
+ok: [mrdhakal] => (item=3)
+ok: [mrdhakal] => (item=4)
+ok: [mrdhakal] => (item=5)
+ok: [mrdhakal] => (item=6)
+ok: [mrdhakal] => (item=7)
+ok: [mrdhakal] => (item=8)
+ok: [mrdhakal] => (item=9)
+
+PLAY RECAP *********************************************************************
+mrdhakal                   : ok=8    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
